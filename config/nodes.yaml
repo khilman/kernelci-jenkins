@@ -1,0 +1,36 @@
+jenkins:
+  nodes:
+  - permanent:
+      labelString: "docker k8s"
+      launcher:
+        ssh:
+          credentialsId: "kernelci-jenkins-private-key"
+          host: "onl1.baylibre.com"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "k8s Azure france - BayLibre build01"
+      nodeProperties:
+      - envVars:
+          env:
+          - key: "K8S_KUBECTX"
+            value: "kci-france"
+      numExecutors: 24
+      remoteFS: "/home/buildslave"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "docker k8s"
+      launcher:
+        ssh:
+          credentialsId: "kernelci-jenkins-private-key"
+          host: "terbium.collabora.co.uk"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "k8s Azure us-east2 - Collabora terbium"
+      nodeProperties:
+      - envVars:
+          env:
+          - key: "K8S_KUBECTX"
+            value: "aks-kci-us-east2"
+      numExecutors: 24
+      remoteFS: "/home/buildslave"
+      retentionStrategy: "always"
